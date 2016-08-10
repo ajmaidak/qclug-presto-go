@@ -8,12 +8,15 @@ It takes second to get used to GO, similar to a java "CLASSPATH" variable you ne
 
 I find it strange that your GOPATH must be an absolute path rather then something relative...  But hey fuck me, I'm a bad programmer.
 
+```shell
 $ mkdir -p ~/ws/gopath/{bin,src,pkg}
 $ cd ~/ws/gopath
 $ export GOPATH=/home/ajmaidak/ws/gopath
+```
 
 Ok, your first go program should exist in "src/github.com/<user>/hello"
 
+```shell
 $ mkdir -p src/github.com/ajmaidak/hello
 $ vi src/github.com/ajmaidak/hello/hello.go
 package main
@@ -23,30 +26,36 @@ import "fmt"
 func main() {
     fmt.Printf("hello, world\n")
 }
+```
 
 If you much up the sytle you can fix it with gofmt:
 
+```shell
 $ gofmt -w src/github.com/ajmaidak/hello/hello.go
+```
 
 The -w switch will re-write the file rather the write things to standard out.
 
 Alright, lets build hello world: 
-
+```shell
 $ go install github.com/ajmaidak/hello
+```
 
 Assuming your GOPATH is set correctly you should get a lovely 2.3MB binary at $GOPATH/bin/hello:
 
+```shell
 $ ls -l $GOPATH/bin/hello 
 -rwxr-xr-x. 1 ajmaidak ajmaidak 2366920 Aug  9 23:10 bin/hello
 
 $ GOPATH/bin/hello 
 hello, world
-
+```
 
 ... Return to Typing Demo...
 
 You get fetch remote packages via the "go get" command:
 
+```shell
 $ go get github.com/golang/example/hello
 
 $ ls src/github.com/golang/example/hello/
@@ -54,12 +63,12 @@ hello.go
 
 $ $GOPATH/bin/hello 
 Hello, Go examples!
+```
 
 You can see geting the "example/hello" package from golgan brought a bunch of stuff:
 
-
-
-[ajmaidak@antec go]$ tree
+```shell
+$ tree
 .
 ├── bin
 │   └── hello
@@ -132,21 +141,16 @@ You can see geting the "example/hello" package from golgan brought a bunch of st
                     └── main.go
 
 31 directories, 38 files
-
+```
 
 We can compile and run the "outyet" webserver:
 
+```shell
 $ vi src/github.com/golang/example/outyet/main.go
 $ go install github.com/golang/example/outyet
 $ $GOPATH/bin/outyet
+```
 
 (check out port 8080)
 
 Try to build packer... Cry.
-
-
-
-
-
-
-
